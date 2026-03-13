@@ -26,22 +26,40 @@ Prompd is an open-source ecosystem for building, composing, and deploying AI wor
 
 Prompd introduces `.prmd` — a structured prompt format that turns prompts into versionable, composable, and shareable artifacts.
 
-```yaml
----
-name: code-reviewer
-version: 1.0.0
-inherits: "@prompd/base-agent@^1.0.0"
-model: claude-sonnet-4-20250514
-parameters:
-  - name: language
-    type: string
-    default: typescript
+````yaml
+------
+name: pr-review
+version: 2.1.0
+description: "Context-aware pull request reviewer with team standards"
 context:
   - ./standards/style-guide.md
+  - ./standards/security-checklist.md
+system: ./prompts/systems/reviewer.md
+parameters:
+  - name: diff
+    type: string
+    required: true
+    description: "The pull request diff to review"
+  - name: language
+    type: string
+    default: "typescript"
+  - name: focus
+    type: string
+    enum: ["security", "performance", "correctness", "all"]
+    default: "all"
 ---
 
-Review the following {{language}} code for correctness, performance, and adherence to our style guide.
+Review this {{language}} pull request{% if focus != "all" %} with emphasis on **{{focus}}**{% endif %}.
+
+## Diff
 ```
+{{diff}}
+```
+
+{% if focus == "security" %}
+Flag any inputs that reach a database, shell, or HTTP response without validation.
+{% endif %}
+````
 
 Prompts can inherit from packages, include context files, define typed parameters, and compile to any provider's format.
 
