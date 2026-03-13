@@ -68,8 +68,6 @@ Prompts can inherit from packages, include context files, define typed parameter
 |------|-------------|
 | [prompd-app](https://github.com/Prompd/prompd-app) | Desktop IDE — Electron + React + Monaco editor + visual workflow canvas |
 | [prompd-cli](https://github.com/Prompd/prompd-cli) | CLI toolchain — compile, validate, package, and publish prompts |
-| [prompd-api](https://github.com/Prompd/prompd-api) | API integration — turn `.prmd` files into REST, GraphQL, gRPC, and WebSocket endpoints |
-| [prompd-vscode](https://github.com/Prompd/prompd-vscode) | VS Code extension — syntax highlighting and IntelliSense for `.prmd` files |
 | [prompd-docs](https://github.com/Prompd/prompd-docs) | Documentation — format spec, guides, and examples |
 | [prompds](https://github.com/Prompd/prompds) | Community prompts — open-source prompt packages and templates |
 
